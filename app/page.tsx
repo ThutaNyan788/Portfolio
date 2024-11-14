@@ -1,101 +1,348 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
+import { Github, Linkedin, Mail, MenuIcon, X, ExternalLink, Moon, Sun, Download } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Progress } from "@/components/ui/progress"
+import Image from "next/image"
+
+//image
+import profile from "../public/myprofile.jpg";
+import about_profile from "../public/about_profile.jpg";
+import lara_jobify from "../public/lara_jobify.png";
+import lara_recipe from "../public/lara_recipe.png";
+import react_bookshop from "../public/react_bookshop.png";
+import mern_recipe from "../public/mern_recipe.png";
+import react_native_aora from "../public/react_native_aora.png";
+import Link from "next/link"
+
+
+export default function Portfolio() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const toggleTheme = () => setIsDarkMode(!isDarkMode)
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [isDarkMode])
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
+    }
+    setIsMenuOpen(false)
+  }
+
+  const skills = [
+    { name: "HTML", progress: 90 },
+    { name: "CSS", progress: 85 },
+    { name: "JavaScript", progress: 80 },
+    { name: "TypeScript", progress: 75 },
+    { name: "React.js", progress: 85 },
+    { name: "React Native", progress: 70 },
+    { name: "Next.js", progress: 80 },
+    { name: "Node.js", progress: 75 },
+    { name: "PHP", progress: 70 },
+    { name: "Laravel", progress: 65 },
+    { name: "SQL", progress: 75 },
+    { name: "Git", progress: 85 },
+  ]
+
+
+
+  const projects = [
+    {
+      id: 1,
+      name: "Lara Jobify",
+      desc: "This project is job posting site using Laravel",
+      img: lara_jobify,
+      github: "https://github.com/ThutaNyan788/Lara-Jobify"
+    },
+    {
+      id: 2,
+      name: "Lara Recipe",
+      desc: "This project is food recipe using Laravel and ReactJs",
+      img: lara_recipe,
+      github: "https://github.com/ThutaNyan788/Lara-Recipes"
+    },
+    {
+      id: 3,
+      name: "React Bookshop",
+      desc: "This project is bookshop using Firebase and ReactJs",
+      img: react_bookshop,
+      github: "https://github.com/ThutaNyan788/React-Book-Store"
+    },
+    {
+      id: 4,
+      name: "MERN Recipe",
+      desc: "This project is recipe using MERN stack",
+      img: mern_recipe,
+      github: "https://github.com/ThutaNyan788/MERN-Recipe"
+    },
+    {
+      id: 5,
+      name: "ReactNative Aora",
+      desc: "This project is upload posting using ReactNative Expo and AppWrite",
+      img: react_native_aora,
+      github: "https://github.com/ThutaNyan788/ReactNative_Aora"
+    },
+  ]
+
+
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className={`min-h-screen bg-gradient-to-br ${isDarkMode ? 'from-gray-900 to-gray-800 text-white' : 'from-gray-100 to-white text-gray-900'} transition-colors duration-300`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 ${isDarkMode ? 'bg-gray-900 bg-opacity-90' : 'bg-white bg-opacity-90'}`}>
+        <nav className="container mx-auto px-6 py-3">
+          <div className="flex justify-between items-center">
+            <a href="#" className="text-xl font-bold">
+              ThutaNyan
+            </a>
+            <div className="hidden md:flex space-x-4">
+              <button onClick={() => scrollToSection('about')} className="hover:text-gray-300">
+                About
+              </button>
+              <button onClick={() => scrollToSection('skills')} className="hover:text-gray-300">
+                Skills
+              </button>
+              <button onClick={() => scrollToSection('projects')} className="hover:text-gray-300">
+                Projects
+              </button>
+              <button onClick={() => scrollToSection('contact')} className="hover:text-gray-300">
+                Contact
+              </button>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
+              <button className="md:hidden" onClick={toggleMenu} aria-label="Toggle menu">
+                {isMenuOpen ? <X /> : <MenuIcon />}
+              </button>
+            </div>
+          </div>
+        </nav>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className={`md:hidden ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} py-2`}
+          >
+            <button onClick={() => scrollToSection('about')} className="block w-full text-left px-6 py-2 hover:bg-gray-700">
+              About
+            </button>
+            <button onClick={() => scrollToSection('skills')} className="block w-full text-left px-6 py-2 hover:bg-gray-700">
+              Skills
+            </button>
+            <button onClick={() => scrollToSection('projects')} className="block w-full text-left px-6 py-2 hover:bg-gray-700">
+              Projects
+            </button>
+            <button onClick={() => scrollToSection('contact')} className="block w-full text-left px-6 py-2 hover:bg-gray-700">
+              Contact
+            </button>
+          </motion.div>
+        )}
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      <main className="pt-16">
+        <section className="hero min-h-screen flex items-center">
+          <div className="container mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <Image
+                src={profile}
+                alt="ThutaNyan"
+                width={200}
+                height={200}
+                className="rounded-full w-40 h-40 mx-auto object-cover border-4 border-white shadow-lg"
+              />
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-5xl md:text-6xl font-bold mb-4"
+            >
+              Hi, I&apos;m Thuta Nyan
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-xl md:text-2xl mb-8"
+            >
+              Full-stack Developer & AI/ML Enthusiast
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <Button size="lg" >
+                <a href={"/thutanyan.pdf"} target="_blank"  className="flex justify-between">
+                  <Download className="mr-2 h-4 w-4" /> Download My CV
+                </a>
+              </Button>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="about" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8 text-center">About Me</h2>
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="md:w-1/2 mb-8 md:mb-0">
+                <Image
+                  src={about_profile}
+                  alt="ThutaNyan"
+                  width={300}
+                  height={300}
+                  className="rounded-full w-64 h-64 object-cover mx-auto"
+                />
+              </div>
+              <div className="md:w-1/2">
+                <p className="text-lg mb-4">
+                  I&apos;m a passionate full-stack developer with 5 years of experience in creating beautiful and
+                  functional web applications. My expertise includes React, Node.js, and modern CSS frameworks like
+                  Tailwind.
+                </p>
+                <p className="text-lg mb-4">
+                  When I&apos;m not coding, you can find me exploring new technologies, contributing to open-source
+                  projects, or enjoying a good cup of coffee while solving coding challenges.
+                </p>
+                <div className="flex justify-center md:justify-start space-x-4">
+                  <a href="https://github.com/ThutaNyan788" className={`${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`} aria-label="GitHub Profile">
+                    <Github />
+                  </a>
+                  <a href="www.linkedin.com/in/thuta-nyan-380ba5250" className={`${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`} aria-label="LinkedIn Profile">
+                    <Linkedin />
+                  </a>
+                  <a href="mailto:thutanyan788@gmail.com" className={`${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`} aria-label="Email Me">
+                    <Mail />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" className="py-20 px-10">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8 text-center">My Skills</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="space-y-2"
+                >
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium">{skill.name}</span>
+                    <span className="text-sm font-medium">{skill.progress}%</span>
+                  </div>
+                  <Progress value={skill.progress} className="w-full" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8 text-center">My Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: project.id * 0.1 }}
+                  className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg overflow-hidden shadow-lg`}
+                >
+                  <Image
+                    src={project.img}
+                    alt={project.name}
+                    width={1000}
+                    height={192}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2">{project.name}</h3>
+                    <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
+                      {project.desc}
+                    </p>
+                    <div className="flex space-x-2">
+                      <Button variant="outline" size="icon">
+                        <Github className="h-4 w-4" />
+                        <a href={project.github} className="sr-only">View GitHub Repository</a>
+                      </Button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="py-20">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8 text-center">Get In Touch</h2>
+            <div className="max-w-lg mx-auto">
+              <form className="space-y-4">
+                <div>
+                  <label htmlFor="name" className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-1`}>
+                    Name
+                  </label>
+                  <Input id="name" placeholder="Your Name" />
+                </div>
+                <div>
+                  <label htmlFor="email" className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-1`}>
+                    Email
+                  </label>
+                  <Input id="email" type="email" placeholder="your@email.com" />
+                </div>
+                <div>
+                  <label htmlFor="message" className={`block text-sm font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'} mb-1`}>
+                    Message
+                  </label>
+                  <Textarea id="message" placeholder="Your message here..." />
+                </div>
+                <Button type="submit" className="w-full">
+                  Send Message
+                </Button>
+              </form>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className={`${isDarkMode ? 'bg-gray-900' : 'bg-gray-200'} py-6`}>
+        <div className="container mx-auto px-6 text-center">
+          <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>© 2024 ThutaNyan. All rights reserved.</p>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
