@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Github, Linkedin, Mail, MenuIcon, X, ExternalLink, Moon, Sun, Download } from 'lucide-react'
+import { Github, Linkedin, Mail, MenuIcon, X, Moon, Sun, Download } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -17,7 +17,7 @@ import lara_recipe from "../public/lara_recipe.png";
 import react_bookshop from "../public/react_bookshop.png";
 import mern_recipe from "../public/mern_recipe.png";
 import react_native_aora from "../public/react_native_aora.png";
-import Link from "next/link"
+
 
 
 export default function Portfolio() {
@@ -199,7 +199,7 @@ export default function Portfolio() {
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               <Button size="lg" >
-                <a href={"/thutanyan.pdf"} target="_blank"  className="flex justify-between">
+                <a href={"/thutanyan.pdf"} target="_blank" className="flex justify-between">
                   <Download className="mr-2 h-4 w-4" /> Download My CV
                 </a>
               </Button>
@@ -272,7 +272,7 @@ export default function Portfolio() {
         <section id="projects" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold mb-8 text-center">My Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8">
               {projects.map((project) => (
                 <motion.div
                   key={project.id}
@@ -293,12 +293,12 @@ export default function Portfolio() {
                     <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
                       {project.desc}
                     </p>
-                    <div className="flex space-x-2">
-                      <Button variant="outline" size="icon">
-                        <Github className="h-4 w-4" />
-                        <a href={project.github} className="sr-only">View GitHub Repository</a>
-                      </Button>
-                    </div>
+                      <div className="flex space-x-2">
+                        <Button variant={"outline"} onClick={()=>window.location.href=project.github}>
+                          <Github/>
+                        </Button>
+                      </div>
+
                   </div>
                 </motion.div>
               ))}
