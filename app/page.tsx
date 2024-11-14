@@ -234,7 +234,7 @@ export default function Portfolio() {
                   <a href="https://github.com/ThutaNyan788" className={`${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`} aria-label="GitHub Profile">
                     <Github />
                   </a>
-                  <a href="www.linkedin.com/in/thuta-nyan-380ba5250" className={`${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`} aria-label="LinkedIn Profile">
+                  <a href="https://www.linkedin.com/in/thuta-nyan-380ba5250" className={`${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`} aria-label="LinkedIn Profile">
                     <Linkedin />
                   </a>
                   <a href="mailto:thutanyan788@gmail.com" className={`${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`} aria-label="Email Me">
