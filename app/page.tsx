@@ -199,7 +199,7 @@ export default function Portfolio() {
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               <Button size="lg" >
-                <a href={"/thutanyan.pdf"} target="_blank" className="flex justify-between">
+                <a href={"/thutanyan_cv.pdf"} target="_blank" className="flex justify-between">
                   <Download className="mr-2 h-4 w-4" /> Download My CV
                 </a>
               </Button>
