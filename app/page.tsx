@@ -43,20 +43,7 @@ export default function Portfolio() {
     setIsMenuOpen(false)
   }
 
-  const skills = [
-    { name: "HTML", progress: 90 },
-    { name: "CSS", progress: 85 },
-    { name: "JavaScript", progress: 80 },
-    { name: "TypeScript", progress: 75 },
-    { name: "React.js", progress: 85 },
-    { name: "React Native", progress: 70 },
-    { name: "Next.js", progress: 80 },
-    { name: "Node.js", progress: 75 },
-    { name: "PHP", progress: 70 },
-    { name: "Laravel", progress: 65 },
-    { name: "SQL", progress: 75 },
-    { name: "Git", progress: 85 },
-  ]
+ 
 
 
 
@@ -97,6 +84,14 @@ export default function Portfolio() {
       github: "https://github.com/ThutaNyan788/ReactNative_Aora"
     },
   ]
+
+
+  const skills = [
+    { category: "Frontend Development", items: ["React.js", "Next.js", "TypeScript", "Responsive Design"] },
+    { category: "Backend Development", items: ["Node.js", "Express.js", "RESTful APIs"] },
+    { category: "Database Management", items: ["MongoDB", "MySQL", "Redis", "Data Modeling"] },
+    { category: "Project Management", items: ["Agile Methodologies", "Scrum","Version Control (Git)"] },
+  ];
 
 
 
@@ -246,28 +241,31 @@ export default function Portfolio() {
           </div>
         </section>
 
+
         <section id="skills" className="py-20 px-10">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-8 text-center">My Skills</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {skills.map((skill, index) => (
+            <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">Professional Expertise</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {skills.map((skillCategory, index) => (
                 <motion.div
-                  key={skill.name}
+                  key={skillCategory.category}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="space-y-2"
+                  className="p-6 rounded-lg bg-white dark:bg-gray-700 shadow-lg"
                 >
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">{skill.name}</span>
-                    <span className="text-sm font-medium">{skill.progress}%</span>
-                  </div>
-                  <Progress value={skill.progress} className="w-full" />
+                  <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">{skillCategory.category}</h3>
+                  <ul className="list-disc list-inside text-gray-600 dark:text-gray-300">
+                    {skillCategory.items.map((item) => (
+                      <li key={item} className="mb-2">{item}</li>
+                    ))}
+                  </ul>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
+
 
         <section id="projects" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
           <div className="container mx-auto px-6">
@@ -293,11 +291,11 @@ export default function Portfolio() {
                     <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
                       {project.desc}
                     </p>
-                      <div className="flex space-x-2">
-                        <Button variant={"outline"} onClick={()=>window.location.href=project.github}>
-                          <Github/>
-                        </Button>
-                      </div>
+                    <div className="flex space-x-2">
+                      <Button variant={"outline"} onClick={() => window.location.href = project.github}>
+                        <Github />
+                      </Button>
+                    </div>
 
                   </div>
                 </motion.div>
