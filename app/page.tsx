@@ -13,10 +13,11 @@ import Image from "next/image"
 import profile from "../public/myprofile.jpg";
 import about_profile from "../public/about_profile.jpg";
 import lara_jobify from "../public/lara_jobify.png";
-import lara_recipe from "../public/lara_recipe.png";
 import react_bookshop from "../public/react_bookshop.png";
 import mern_recipe from "../public/mern_recipe.png";
 import react_native_aora from "../public/react_native_aora.png";
+import ec_rn from "../public/ec_rn.png";
+import amz_studio from "../public/amz_studio.png"
 
 
 
@@ -63,38 +64,45 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      name: "Lara Jobify",
-      desc: "This project is job posting site using Laravel",
+      name: "Jobify",
+      desc: "The purpose of this project is to create a web app that makes it easy for employers and employees to search for jobs.",
       img: lara_jobify,
       github: "https://github.com/ThutaNyan788/Lara-Jobify"
     },
     {
-      id: 2,
-      name: "Lara Recipe",
-      desc: "This project is food recipe using Laravel and ReactJs",
-      img: lara_recipe,
-      github: "https://github.com/ThutaNyan788/Lara-Recipes"
-    },
-    {
       id: 3,
-      name: "React Bookshop",
-      desc: "This project is bookshop using Firebase and ReactJs",
+      name: "Awesome Bookshop",
+      desc: "This project has been created so that you can easily find the book you want without having to look for books at the bookstore. You can also buy them online",
       img: react_bookshop,
       github: "https://github.com/ThutaNyan788/React-Book-Store"
     },
     {
       id: 4,
-      name: "MERN Recipe",
-      desc: "This project is recipe using MERN stack",
+      name: "Recipes Made Easy",
+      desc: "This project is a web app that makes it easy for people who want to cook alone and housewives to cook",
       img: mern_recipe,
       github: "https://github.com/ThutaNyan788/MERN-Recipe"
     },
     {
       id: 5,
-      name: "ReactNative Aora",
-      desc: "This project is upload posting using ReactNative Expo and AppWrite",
+      name: "Aora Platform",
+      desc: "The purpose of this project is to be with family or loved ones It is a small app where you can post your own video posts.",
       img: react_native_aora,
       github: "https://github.com/ThutaNyan788/ReactNative_Aora"
+    },
+    {
+      id: 6,
+      name: "KIWI Ecommerce",
+      desc:"The purpose of this project is It is an app made to make it convenient for people who sell things to buy it. You can buy the jackets you like.",
+      img:ec_rn,
+      github: "https://github.com/ThutaNyan788/ReactNative_Ecommerce"
+    },
+    {
+      id: 7,
+      name: "AMZ Photo Studio",
+      desc:"This project made for personal studio landing page to attract people their design and photo",
+      img:amz_studio,
+      github: "https://github.com/ThutaNyan788/AMZstudioproject"
     },
   ]
 
@@ -189,9 +197,17 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-xl md:text-2xl mb-8"
+              className="text-xl md:text-2xl mb-2"
             >
               Full-stack Developer & AI/ML Enthusiast
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-md  mb-8"
+            >
+              I want to build a web and cross-platform app with the best performance and security.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
