@@ -18,6 +18,8 @@ import mern_recipe from "../public/mern_recipe.png";
 import react_native_aora from "../public/react_native_aora.png";
 import ec_rn from "../public/ec_rn.png";
 import amz_studio from "../public/amz_studio.png"
+import lms from "../public/lms.png"
+
 
 
 
@@ -103,6 +105,13 @@ export default function Portfolio() {
       desc:"This project made for personal studio landing page to attract people their design and photo",
       img:amz_studio,
       github: "https://github.com/ThutaNyan788/AMZstudioproject"
+    },
+    {
+      id: 8,
+      name: "Learning Platform System",
+      desc:"This project is a learning platform system that can be used by students and teachers to learn and teach.",
+      img:lms,
+      github: "https://github.com/ThutaNyan788/LMS-Platform"
     },
   ]
 
