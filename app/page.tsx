@@ -247,7 +247,7 @@ export default function Portfolio() {
               </div>
               <div className="md:w-1/2">
                 <p className="text-lg mb-4">
-                  I&apos;m a passionate full-stack developer with 5 years of experience in creating beautiful and
+                  I&apos;m a passionate full-stack developer with 3 years of experience in creating beautiful and
                   functional web applications. My expertise includes React, Node.js, and modern CSS frameworks like
                   Tailwind.
                 </p>
